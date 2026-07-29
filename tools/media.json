@@ -1,0 +1,1043 @@
+{
+        "media": [
+        {
+            "characterRegex": "[:0-9]",
+            "type": "font",
+            "name": "FONT_EARWIG_FACTORY_48",
+            "file": "fonts/earwig-factory-rg.ttf"
+        },
+        {
+            "characterRegex": "[:0-9]",
+            "type": "font",
+            "name": "FONT_POLAND_CANNED_INTO_KAITO_40",
+            "file": "fonts/PolandCannedIntoKaito.ttf"
+        },
+        {
+            "characterRegex": "[0-9°CF]",
+            "type": "font",
+            "name": "FONT_PUBLIC_SANS_BLACK_30",
+            "file": "fonts/PublicSans-BlackItalic.ttf"
+        },
+        {
+            "type": "png",
+            "name": "DAY_BG",
+            "file": "images/day_bg-small.png"
+        },
+        {
+            "type": "png",
+            "name": "NIGHT_BG",
+            "file": "images/night_bg-small.png"
+        },
+        {
+            "type": "png",
+            "name": "ICON",
+            "file": "images/icon.png",
+            "menuIcon": true
+        },
+        {
+            "type": "png",
+            "name": "DAY_1_TOP",
+            "file": "images/day/1Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_1_MID",
+            "file": "images/day/1.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_1_BOTTOM",
+            "file": "images/day/1Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_2_TOP",
+            "file": "images/day/2Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_2_MID",
+            "file": "images/day/2.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_2_BOTTOM",
+            "file": "images/day/2Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_3_TOP",
+            "file": "images/day/3Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_3_MID",
+            "file": "images/day/3.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_3_BOTTOM",
+            "file": "images/day/3Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_4_TOP",
+            "file": "images/day/4Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_4_MID",
+            "file": "images/day/4.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_4_BOTTOM",
+            "file": "images/day/4Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_5_TOP",
+            "file": "images/day/5Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_5_MID",
+            "file": "images/day/5.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_5_BOTTOM",
+            "file": "images/day/5Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_6_TOP",
+            "file": "images/day/6Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_6_MID",
+            "file": "images/day/6.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_6_BOTTOM",
+            "file": "images/day/6Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_7_TOP",
+            "file": "images/day/7Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_7_MID",
+            "file": "images/day/7.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_7_BOTTOM",
+            "file": "images/day/7Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_8_TOP",
+            "file": "images/day/8Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_8_MID",
+            "file": "images/day/8.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_8_BOTTOM",
+            "file": "images/day/8Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_9_TOP",
+            "file": "images/day/9Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_9_MID",
+            "file": "images/day/9.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_9_BOTTOM",
+            "file": "images/day/9Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_10_TOP",
+            "file": "images/day/10Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_10_MID",
+            "file": "images/day/10.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_10_BOTTOM",
+            "file": "images/day/10Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_11_TOP",
+            "file": "images/day/11Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_11_MID",
+            "file": "images/day/11.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_11_BOTTOM",
+            "file": "images/day/11Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_12_TOP",
+            "file": "images/day/12Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_12_MID",
+            "file": "images/day/12.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_12_BOTTOM",
+            "file": "images/day/12Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_13_TOP",
+            "file": "images/day/13Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_13_MID",
+            "file": "images/day/13.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_13_BOTTOM",
+            "file": "images/day/13Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_14_TOP",
+            "file": "images/day/14Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_14_MID",
+            "file": "images/day/14.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_14_BOTTOM",
+            "file": "images/day/14Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_15_TOP",
+            "file": "images/day/15Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_15_MID",
+            "file": "images/day/15.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_15_BOTTOM",
+            "file": "images/day/15Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_16_TOP",
+            "file": "images/day/16Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_16_MID",
+            "file": "images/day/16.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_16_BOTTOM",
+            "file": "images/day/16Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_17_TOP",
+            "file": "images/day/17Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_17_MID",
+            "file": "images/day/17.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_17_BOTTOM",
+            "file": "images/day/17Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_18_TOP",
+            "file": "images/day/18Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_18_MID",
+            "file": "images/day/18.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_18_BOTTOM",
+            "file": "images/day/18Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_19_TOP",
+            "file": "images/day/19Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_19_MID",
+            "file": "images/day/19.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_19_BOTTOM",
+            "file": "images/day/19Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_20_TOP",
+            "file": "images/day/20Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_20_MID",
+            "file": "images/day/20.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_20_BOTTOM",
+            "file": "images/day/20Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_21_TOP",
+            "file": "images/day/21Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_21_MID",
+            "file": "images/day/21.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_21_BOTTOM",
+            "file": "images/day/21Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_22_TOP",
+            "file": "images/day/22Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_22_MID",
+            "file": "images/day/22.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_22_BOTTOM",
+            "file": "images/day/22Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_23_TOP",
+            "file": "images/day/23Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_23_MID",
+            "file": "images/day/23.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_23_BOTTOM",
+            "file": "images/day/23Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_24_TOP",
+            "file": "images/day/24Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_24_MID",
+            "file": "images/day/24.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_24_BOTTOM",
+            "file": "images/day/24Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_25_TOP",
+            "file": "images/day/25Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_25_MID",
+            "file": "images/day/25.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_25_BOTTOM",
+            "file": "images/day/25Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_26_TOP",
+            "file": "images/day/26Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_26_MID",
+            "file": "images/day/26.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_26_BOTTOM",
+            "file": "images/day/26Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_27_TOP",
+            "file": "images/day/27Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_27_MID",
+            "file": "images/day/27.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_27_BOTTOM",
+            "file": "images/day/27Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_28_TOP",
+            "file": "images/day/28Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_28_MID",
+            "file": "images/day/28.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_28_BOTTOM",
+            "file": "images/day/28Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_29_TOP",
+            "file": "images/day/29Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_29_MID",
+            "file": "images/day/29.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_29_BOTTOM",
+            "file": "images/day/29Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_30_TOP",
+            "file": "images/day/30Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_30_MID",
+            "file": "images/day/30.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_30_BOTTOM",
+            "file": "images/day/30Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_31_TOP",
+            "file": "images/day/31Top.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_31_MID",
+            "file": "images/day/31.png"
+        },
+        {
+            "type": "png",
+            "name": "DAY_31_BOTTOM",
+            "file": "images/day/31Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_1_TOP",
+            "file": "images/month/1Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_1_MID",
+            "file": "images/month/1.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_1_BOTTOM",
+            "file": "images/month/1Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_1_TOP_2DIGIT",
+            "file": "images/month/1Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_1_MID_2DIGIT",
+            "file": "images/month/1_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_1_BOTTOM_2DIGIT",
+            "file": "images/month/1Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_2_TOP",
+            "file": "images/month/2Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_2_MID",
+            "file": "images/month/2.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_2_BOTTOM",
+            "file": "images/month/2Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_2_TOP_2DIGIT",
+            "file": "images/month/2Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_2_MID_2DIGIT",
+            "file": "images/month/2_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_2_BOTTOM_2DIGIT",
+            "file": "images/month/2Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_3_TOP",
+            "file": "images/month/3Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_3_MID",
+            "file": "images/month/3.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_3_BOTTOM",
+            "file": "images/month/3Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_3_TOP_2DIGIT",
+            "file": "images/month/3Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_3_MID_2DIGIT",
+            "file": "images/month/3_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_3_BOTTOM_2DIGIT",
+            "file": "images/month/3Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_4_TOP",
+            "file": "images/month/4Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_4_MID",
+            "file": "images/month/4.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_4_BOTTOM",
+            "file": "images/month/4Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_4_TOP_2DIGIT",
+            "file": "images/month/4Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_4_MID_2DIGIT",
+            "file": "images/month/4_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_4_BOTTOM_2DIGIT",
+            "file": "images/month/4Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_5_TOP",
+            "file": "images/month/5Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_5_MID",
+            "file": "images/month/5.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_5_BOTTOM",
+            "file": "images/month/5Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_5_TOP_2DIGIT",
+            "file": "images/month/5Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_5_MID_2DIGIT",
+            "file": "images/month/5_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_5_BOTTOM_2DIGIT",
+            "file": "images/month/5Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_6_TOP",
+            "file": "images/month/6Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_6_MID",
+            "file": "images/month/6.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_6_BOTTOM",
+            "file": "images/month/6Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_6_TOP_2DIGIT",
+            "file": "images/month/6Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_6_MID_2DIGIT",
+            "file": "images/month/6_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_6_BOTTOM_2DIGIT",
+            "file": "images/month/6Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_7_TOP",
+            "file": "images/month/7Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_7_MID",
+            "file": "images/month/7.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_7_BOTTOM",
+            "file": "images/month/7Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_7_TOP_2DIGIT",
+            "file": "images/month/7Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_7_MID_2DIGIT",
+            "file": "images/month/7_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_7_BOTTOM_2DIGIT",
+            "file": "images/month/7Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_8_TOP",
+            "file": "images/month/8Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_8_MID",
+            "file": "images/month/8.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_8_BOTTOM",
+            "file": "images/month/8Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_8_TOP_2DIGIT",
+            "file": "images/month/8Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_8_MID_2DIGIT",
+            "file": "images/month/8_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_8_BOTTOM_2DIGIT",
+            "file": "images/month/8Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_9_TOP",
+            "file": "images/month/9Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_9_MID",
+            "file": "images/month/9.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_9_BOTTOM",
+            "file": "images/month/9Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_9_TOP_2DIGIT",
+            "file": "images/month/9Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_9_MID_2DIGIT",
+            "file": "images/month/9_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_9_BOTTOM_2DIGIT",
+            "file": "images/month/9Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_10_TOP",
+            "file": "images/month/10Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_10_MID",
+            "file": "images/month/10.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_10_BOTTOM",
+            "file": "images/month/10Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_10_TOP_2DIGIT",
+            "file": "images/month/10Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_10_MID_2DIGIT",
+            "file": "images/month/10_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_10_BOTTOM_2DIGIT",
+            "file": "images/month/10Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_11_TOP",
+            "file": "images/month/11Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_11_MID",
+            "file": "images/month/11.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_11_BOTTOM",
+            "file": "images/month/11Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_11_TOP_2DIGIT",
+            "file": "images/month/11Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_11_MID_2DIGIT",
+            "file": "images/month/11_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_11_BOTTOM_2DIGIT",
+            "file": "images/month/11Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_12_TOP",
+            "file": "images/month/12Top.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_12_MID",
+            "file": "images/month/12.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_12_BOTTOM",
+            "file": "images/month/12Bottom.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_12_TOP_2DIGIT",
+            "file": "images/month/12Top_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_12_MID_2DIGIT",
+            "file": "images/month/12_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "MONTH_12_BOTTOM_2DIGIT",
+            "file": "images/month/12Bottom_2digit.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_SUNDAY_TOP",
+            "file": "images/week/SundayTop.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_SUNDAY_MID",
+            "file": "images/week/Sunday.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_SUNDAY_BOTTOM",
+            "file": "images/week/SundayBottom.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_MONDAY_TOP",
+            "file": "images/week/MondayTop.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_MONDAY_MID",
+            "file": "images/week/Monday.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_MONDAY_BOTTOM",
+            "file": "images/week/MondayBottom.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_TUESDAY_TOP",
+            "file": "images/week/TuesdayTop.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_TUESDAY_MID",
+            "file": "images/week/Tuesday.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_TUESDAY_BOTTOM",
+            "file": "images/week/TuesdayBottom.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_WEDNESDAY_TOP",
+            "file": "images/week/WednesdayTop.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_WEDNESDAY_MID",
+            "file": "images/week/Wednesday.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_WEDNESDAY_BOTTOM",
+            "file": "images/week/WednesdayBottom.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_THURSDAY_TOP",
+            "file": "images/week/ThursdayTop.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_THURSDAY_MID",
+            "file": "images/week/Thursday.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_THURSDAY_BOTTOM",
+            "file": "images/week/ThursdayBottom.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_FRIDAY_TOP",
+            "file": "images/week/FridayTop.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_FRIDAY_MID",
+            "file": "images/week/Friday.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_FRIDAY_BOTTOM",
+            "file": "images/week/FridayBottom.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_SATURDAY_TOP",
+            "file": "images/week/SaturdayTop.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_SATURDAY_MID",
+            "file": "images/week/Saturday.png"
+        },
+        {
+            "type": "png",
+            "name": "WEEK_SATURDAY_BOTTOM",
+            "file": "images/week/SaturdayBottom.png"
+        },
+        {
+            "type": "raw",
+            "name": "WEATHER_SUN",
+            "file": "images/weather/sun.apng"
+        },
+        {
+            "type": "raw",
+            "name": "WEATHER_SUN_2DIGIT",
+            "file": "images/weather/sun_2digit.apng"
+        },
+        {
+            "type": "raw",
+            "name": "WEATHER_CLOUD",
+            "file": "images/weather/cloud.apng"
+        },
+        {
+            "type": "raw",
+            "name": "WEATHER_CLOUD_2DIGIT",
+            "file": "images/weather/cloud_2digit.apng"
+        },
+        {
+            "type": "raw",
+            "name": "WEATHER_RAIN",
+            "file": "images/weather/rain.apng"
+        },
+        {
+            "type": "raw",
+            "name": "WEATHER_RAIN_2DIGIT",
+            "file": "images/weather/rain_2digit.apng"
+        },
+        {
+            "type": "raw",
+            "name": "WEATHER_SNOW",
+            "file": "images/weather/snow.apng"
+        },
+        {
+            "type": "raw",
+            "name": "WEATHER_SNOW_2DIGIT",
+            "file": "images/weather/snow_2digit.apng"
+        },
+        {
+            "type": "raw",
+            "name": "WEATHER_UNKNOWN",
+            "file": "images/weather/unknown.apng"
+        },
+        {
+            "type": "raw",
+            "name": "WEATHER_UNKNOWN_2DIGIT",
+            "file": "images/weather/unknown_2digit.apng"
+        },
+        {
+            "type": "png",
+            "name": "TIME_EARLY_MORNING",
+            "file": "images/time/early_morning.png"
+        },
+        {
+            "type": "png",
+            "name": "TIME_MORNING",
+            "file": "images/time/morning.png"
+        },
+        {
+            "type": "png",
+            "name": "TIME_DAYTIME",
+            "file": "images/time/daytime.png"
+        },
+        {
+            "type": "png",
+            "name": "TIME_AFTERNOON",
+            "file": "images/time/afternoon.png"
+        },
+        {
+            "type": "png",
+            "name": "TIME_EVENING",
+            "file": "images/time/evening.png"
+        }
+    ]
+}

@@ -23,3 +23,4 @@ No generative AI was used in the making of this watchface.
 - Proper handling of high-latitude cases for sunrise/sunset background setting
 - Improve legibility of Current Time (contrast could be improved, especially with daytime BG)
 - More user control for "time of day" (morning, afternoon, etc.) setting
+- General asset cleanup (lots of jaggies from the basic scaling I did)

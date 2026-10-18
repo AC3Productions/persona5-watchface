@@ -111,12 +111,15 @@ void TimeInitResources(GRect bounds)
 
 void TimeUnloadResources()
 {
+    fonts_unload_custom_font(s_time_font);
+
     gbitmap_destroy(s_bg_bitmap);
     gbitmap_destroy(s_tod_bitmap);
 
     text_layer_destroy(s_time_layer);
     text_layer_destroy(s_time_drop_shadow_layer);
     bitmap_layer_destroy(s_bg_layer);
+    bitmap_layer_destroy(s_tod_layer);
 }
 
 

@@ -42,6 +42,7 @@ void TemperatureInitResources(GRect bounds)
 
 void TemperatureUnloadResources()
 {
+    fonts_unload_custom_font(s_temp_font);
     text_layer_destroy(s_temp_layer);
     text_layer_destroy(s_temp_drop_shadow_layer);
 }

@@ -3,7 +3,7 @@
 
 #include "h/resource_ids.h"
 
-static const uint32_t DayResourceIDs[3][31] = {
+static const uint8_t DayResourceIDs[3][31] = {
     {
 		RESOURCE_ID_DAY_1_BOTTOM,
 		RESOURCE_ID_DAY_2_BOTTOM,
@@ -105,7 +105,7 @@ static const uint32_t DayResourceIDs[3][31] = {
 	}
 };
 
-static const uint32_t MonthResourceIDs[3][12] = {
+static const uint8_t MonthResourceIDs[3][12] = {
     {
 		RESOURCE_ID_MONTH_1_BOTTOM,
 		RESOURCE_ID_MONTH_2_BOTTOM,
@@ -150,7 +150,7 @@ static const uint32_t MonthResourceIDs[3][12] = {
 	}
 };
 
-static const uint32_t Month2DigitResourceIDs[3][12] = {
+static const uint8_t Month2DigitResourceIDs[3][12] = {
     {
 		RESOURCE_ID_MONTH_1_BOTTOM_2DIGIT,
 		RESOURCE_ID_MONTH_2_BOTTOM_2DIGIT,
@@ -195,7 +195,7 @@ static const uint32_t Month2DigitResourceIDs[3][12] = {
 	}
 };
 
-static const uint32_t WeekdayResourceIDs[3][7] = {
+static const uint8_t WeekdayResourceIDs[3][7] = {
     {
 		RESOURCE_ID_WEEK_SUNDAY_BOTTOM,
 		RESOURCE_ID_WEEK_MONDAY_BOTTOM,
@@ -225,7 +225,7 @@ static const uint32_t WeekdayResourceIDs[3][7] = {
 	}
 };
 
-static const uint32_t WeatherResourceIDs[] = {
+static const uint8_t WeatherResourceIDs[] = {
 	RESOURCE_ID_WEATHER_SUN,
 	RESOURCE_ID_WEATHER_CLOUD,
 	RESOURCE_ID_WEATHER_RAIN,
@@ -233,7 +233,7 @@ static const uint32_t WeatherResourceIDs[] = {
 	RESOURCE_ID_WEATHER_UNKNOWN,
 };
 
-static const uint32_t Weather2DigitResourceIDs[] = {
+static const uint8_t Weather2DigitResourceIDs[] = {
 	RESOURCE_ID_WEATHER_SUN_2DIGIT,
 	RESOURCE_ID_WEATHER_CLOUD_2DIGIT,
 	RESOURCE_ID_WEATHER_RAIN_2DIGIT,
@@ -241,7 +241,7 @@ static const uint32_t Weather2DigitResourceIDs[] = {
 	RESOURCE_ID_WEATHER_UNKNOWN_2DIGIT,
 };
 
-static const uint32_t TimeOfDayResourceIDs[] = {
+static const uint8_t TimeOfDayResourceIDs[] = {
 	RESOURCE_ID_TIME_EARLY_MORNING,
 	RESOURCE_ID_TIME_MORNING,
 	RESOURCE_ID_TIME_DAYTIME,

@@ -1,5 +1,6 @@
 #include <pebble.h>
 #include "h/clay_settings.h"
+#include "h/calendar.h"
 
 #define SETTINGS_KEY 1
 
@@ -16,7 +17,7 @@ typedef struct ClaySettings
 
     bool show_tod;
 
-    bool disable_anim; // todo: replace with enum for anim mode
+    enum AnimationMode anim_mode; // todo: replace with enum for anim mode
 } ClaySettings;
 
 static ClaySettings settings;
@@ -32,7 +33,7 @@ void prv_default_settings()
 
     settings.use_fahrenheit = true;
     settings.show_tod = true;
-    settings.disable_anim = false;
+    settings.anim_mode = AnimAlways;
 }
 
 void prv_save_settings() 
@@ -76,9 +77,9 @@ bool SettingsShowToD()
     return settings.show_tod;
 }
 
-bool SettingsGetAnimationDisabled()
+enum AnimationMode SettingsGetAnimationMode()
 {
-    return settings.disable_anim;
+    return settings.anim_mode;
 }
 
 void SettingsSetBackgroundMode(enum BackgroundMode bg)
@@ -109,7 +110,7 @@ void SettingsSetShowTimeOfDay(bool show)
     settings.show_tod = show;
 }
 
-void SettingsSetAnimationDisabled(bool disable_anim)
+void SettingsSetAnimationMode(enum AnimationMode anim_mode)
 {
-    settings.disable_anim = disable_anim;
+    settings.anim_mode = anim_mode;
 }

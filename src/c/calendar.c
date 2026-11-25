@@ -23,6 +23,7 @@ static bool prev_2digit = false;
 
 static AppTimer* s_weather_anim_timer = NULL;
 static bool animation_enabled = false;
+static enum AnimationMode animation_mode = AnimDisabled;
 
 /* Assets & resources */
 
@@ -62,6 +63,23 @@ static void SetBitmapLayerPos(BitmapLayer* layer, GPoint pos)
     layer_set_frame(bitmap_layer_get_layer(layer), frame);
 }
 
+enum AnimationMode CalendarGetAnimationMode(const char *anim_mode) 
+{
+    if (strcmp(anim_mode, "always_on") == 0)
+    {
+        return AnimAlways;
+    }
+    else if (strcmp(anim_mode, "disabled") == 0)
+    {
+        return AnimDisabled;
+    }
+    else if (strcmp(anim_mode, "backlight") == 0)
+    {
+        return AnimBacklight;
+    }
+
+    return AnimDisabled;
+}
 
 void CalendarInitResources()
 {
@@ -337,20 +355,41 @@ void CalendarUpdateWeatherIcon(enum WeatherIcon icon)
     }
 }
 
-void CalendarSetAnimationDisabled(bool disabled)
+static void OnBacklightChange(bool on)
 {
-    animation_enabled = !disabled;
-
-    if (animation_enabled)
+    if (animation_mode != AnimBacklight)
     {
+        return;
+    }
+
+    if (on && !animation_enabled)
+    {
+        animation_enabled = true;
+        s_weather_anim_timer = app_timer_register(0, WeatherFrameAdvanceEvent, NULL);
+    }
+    else if (!on && animation_enabled)
+    {
+        animation_enabled = false;
+        app_timer_cancel(s_weather_anim_timer);
+    }
+}
+
+void CalendarSetAnimationMode(enum AnimationMode mode)
+{
+    animation_mode = mode;
+
+    if (animation_mode == AnimAlways)
+    {
+        backlight_service_unsubscribe();
         // Animation just started
         if (!s_weather_anim_timer)
         {
             s_weather_anim_timer = app_timer_register(0, WeatherFrameAdvanceEvent, NULL);
         }
     }
-    else
+    else if (animation_mode == AnimDisabled)
     {
+        backlight_service_unsubscribe();
         if (s_weather_anim_timer)
         {
             app_timer_cancel(s_weather_anim_timer);
@@ -360,6 +399,10 @@ void CalendarSetAnimationDisabled(bool disabled)
         gbitmap_sequence_restart(s_weather_bitmap_sequence);
         gbitmap_sequence_update_bitmap_next_frame(s_weather_bitmap_sequence, s_weather_bitmap, NULL);
         bitmap_layer_set_bitmap(s_weather_layer, s_weather_bitmap);
+    }
+    else if (animation_mode == AnimBacklight)
+    {
+        backlight_service_subscribe(OnBacklightChange);
     }
 }
 

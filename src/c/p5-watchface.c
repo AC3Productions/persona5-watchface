@@ -1,18 +1,15 @@
-#include <math.h>
 #include <pebble.h>
 
 #include "h/calendar.h"
 #include "h/clay_settings.h"
-#include "h/positions.h"
-#include "h/resource_ids.h"
 #include "h/time.h"
 #include "h/weather.h"
 
 static Window* s_main_window = NULL;
 
 // To do:
-// Finish 20-31 in asset cleanup, as well as months and weather
-// Update generate_media to support the new asset names (and maybe see what's wrong with it?)
+// [DONE] Finish 20-31 in asset cleanup, as well as months and weather
+// [DONE] Update generate_media.py to support the new asset names (and maybe see what's wrong with it?)
 // Later:
 // Backlight animation setting
 
@@ -27,19 +24,6 @@ static void update_time()
     CalendarUpdateDay(tick_time->tm_mday);
     CalendarUpdateMonth(tick_time->tm_mon);
     CalendarUpdateWeekday(tick_time->tm_wday);
-
-        // static int test_weekday = 0;
-    // SetTime(21, 28);
-    // CalendarUpdateDay(18);
-    // CalendarUpdateMonth(10);
-    // CalendarUpdateWeekday(test_weekday);
-    // CalendarUpdateWeatherIcon(WeatherIconUnknown);
-    
-    // ++test_weekday;
-    // if (test_weekday > 6)
-    // {
-    //     test_weekday = 0;
-    // }
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed)
@@ -90,7 +74,7 @@ static void UpdateFromSettings()
         app_message_outbox_send();
     }
     
-    CalendarSetAnimationDisabled(SettingsGetAnimationDisabled());
+    CalendarSetAnimationMode(SettingsGetAnimationMode());
 }
 
 static void main_window_load(Window *window)
@@ -190,10 +174,11 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
         SettingsSetShowTimeOfDay(show_tod_t->value->int32 == 1);
     }
 
-    Tuple *disable_anim_t = dict_find(iterator, MESSAGE_KEY_DisableAnimation);
+    Tuple *disable_anim_t = dict_find(iterator, MESSAGE_KEY_AnimationMode);
     if (disable_anim_t) 
     {
-        SettingsSetAnimationDisabled(disable_anim_t->value->int32 == 1);
+        enum AnimationMode new_anim_mode = CalendarGetAnimationMode(disable_anim_t->value->cstring);
+        SettingsSetAnimationMode(new_anim_mode);
     }
 
     // Save and apply if any settings were changed

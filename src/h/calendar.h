@@ -12,6 +12,8 @@ enum AnimationMode
     AnimBacklight,
 };
 
+enum AnimationMode CalendarGetAnimationMode(const char* anim_mode);
+
 void CalendarInitResources();
 void CalendarUnloadResources();
 void CalendarAddLayers(Layer* parent_layer);
@@ -21,6 +23,6 @@ void CalendarUpdateMonth(int month);
 void CalendarUpdateWeekday(int weekday);
 void CalendarUpdateWeatherIcon(enum WeatherIcon icon);
 
-void CalendarSetAnimationDisabled(bool disabled);
+void CalendarSetAnimationMode(enum AnimationMode anim_mode);
 
 #endif // #ifndef CALENDAR_H

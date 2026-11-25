@@ -9,7 +9,6 @@ static TextLayer* s_temp_layer = NULL;
 static TextLayer* s_temp_drop_shadow_layer = NULL;
 
 // Current temperature (fahrenheit)
-static int curr_temp = 0;
 static bool weather_connected = false;
 
 void SetWeatherConnected(bool connected)
@@ -84,7 +83,6 @@ void SetTemperature(const char* temp)
         return;
     }
 
-    //curr_temp = fahrenheit;
     static char temperature_buffer[8];
     strncpy(temperature_buffer, temp, strlen(temp));
 

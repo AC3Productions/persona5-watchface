@@ -3,6 +3,7 @@
 #define CLAY_SETTINGS_H
 
 #include "h/time.h"
+#include "h/calendar.h"
 
 void prv_default_settings();
 void prv_save_settings();
@@ -15,7 +16,7 @@ int SettingsGetConstantSunsetHour();
 int SettingsGetConstantSunsetMinute();
 
 bool SettingsShowToD();
-bool SettingsGetAnimationDisabled();
+enum AnimationMode SettingsGetAnimationMode();
 
 void SettingsSetBackgroundMode(enum BackgroundMode bg);
 void SettingsSetSunriseTimes(int hour, int min);
@@ -23,6 +24,6 @@ void SettingsSetSunsetTimes(int hour, int min);
 
 void SettingsSetShowTimeOfDay(bool show);
 
-void SettingsSetAnimationDisabled(bool disable_anim);
+void SettingsSetAnimationMode(enum AnimationMode anim_mode);
 
 #endif // #ifndef CLAY_SETTINGS_H

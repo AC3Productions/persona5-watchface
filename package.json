@@ -40,7 +40,7 @@
       "ConstantSunrise",
       "ConstantSunset",
       "ShowTimeOfDay",
-      "DisableAnimation"
+      "AnimationMode"
     ],
     "resources": {
         "media": [

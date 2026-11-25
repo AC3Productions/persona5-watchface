@@ -63,11 +63,26 @@ module.exports =
                 "description": "Whether to show the \"Afternoon\"/\"Evening\"-style Time of Day display."
             },
             {
-                "type": "toggle",
-                "messageKey": "DisableAnimation",
-                "label": "Disable Animation",
-                "defaultValue": false,
-                "description": "Disable the animation on the weather conditions display. Improves battery performance."
+                "type": "select",
+                "messageKey": "AnimationMode",
+                "label": "Animation Mode",
+                "defaultValue": "always_on",
+                "description": "The conditions for when the weather animation plays. Keeping it on is very battery-heavy. Backlight mode: animation only plays when the backlight is on.",
+                "options": 
+                [
+                    {
+                        "label": "Always On",
+                        "value": "always_on"
+                    },
+                    {
+                        "label": "Disabled",
+                        "value": "disabled"
+                    },
+                    {
+                        "label": "Backlight",
+                        "value": "backlight"
+                    }
+                ]
             }
         ]
     },

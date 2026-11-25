@@ -5,6 +5,13 @@
 
 #include "weather.h"
 
+enum AnimationMode
+{
+    AnimDisabled = 0,
+    AnimAlways,
+    AnimBacklight,
+};
+
 void CalendarInitResources();
 void CalendarUnloadResources();
 void CalendarAddLayers(Layer* parent_layer);

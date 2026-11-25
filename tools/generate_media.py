@@ -9,19 +9,13 @@ file.write("""{
 file.write("""{
             "characterRegex": "[:0-9]",
             "type": "font",
-            "name": "FONT_EARWIG_FACTORY_48",
-            "file": "fonts/earwig-factory-rg.ttf"
-        },
-        {
-            "characterRegex": "[:0-9]",
-            "type": "font",
             "name": "FONT_POLAND_CANNED_INTO_KAITO_40",
             "file": "fonts/PolandCannedIntoKaito.ttf"
         },
         {
             "characterRegex": "[0-9°CF]",
             "type": "font",
-            "name": "FONT_PUBLIC_SANS_BLACK_30",
+            "name": "FONT_PUBLIC_SANS_BLACK_35",
             "file": "fonts/PublicSans-BlackItalic.ttf"
         },
         {
@@ -47,19 +41,19 @@ for i in range(1,32):
         {
             "type": "png",
             "name": """ + f'"DAY_{i}_TOP"' + """,
-            "file": """ + f'"images/day/{i}Top.png"' + """
+            "file": """ + f'"images/day/{i}_top.png"' + """
         }""")
     file.write(""",
         {
             "type": "png",
             "name": """ + f'"DAY_{i}_MID"' + """,
-            "file": """ + f'"images/day/{i}.png"' + """
+            "file": """ + f'"images/day/{i}_middle.png"' + """
         }""")
     file.write(""",
         {
             "type": "png",
             "name": """ + f'"DAY_{i}_BOTTOM"' + """,
-            "file": """ + f'"images/day/{i}Bottom.png"' + """
+            "file": """ + f'"images/day/{i}_bottom.png"' + """
         }""")
 
 # months
@@ -68,39 +62,19 @@ for i in range(1,13):
         {
             "type": "png",
             "name": """ + f'"MONTH_{i}_TOP"' + """,
-            "file": """ + f'"images/month/{i}Top.png"' + """
+            "file": """ + f'"images/month/{i}_top.png"' + """
         }""")
     file.write(""",
         {
             "type": "png",
             "name": """ + f'"MONTH_{i}_MID"' + """,
-            "file": """ + f'"images/month/{i}.png"' + """
+            "file": """ + f'"images/month/{i}_middle.png"' + """
         }""")
     file.write(""",
         {
             "type": "png",
             "name": """ + f'"MONTH_{i}_BOTTOM"' + """,
-            "file": """ + f'"images/month/{i}Bottom.png"' + """
-        }""")
-    
-# 2-digit months
-    file.write(""",
-        {
-            "type": "png",
-            "name": """ + f'"MONTH_{i}_TOP_2DIGIT"' + """,
-            "file": """ + f'"images/month/{i}Top_2digit.png"' + """
-        }""")
-    file.write(""",
-        {
-            "type": "png",
-            "name": """ + f'"MONTH_{i}_MID_2DIGIT"' + """,
-            "file": """ + f'"images/month/{i}_2digit.png"' + """
-        }""")
-    file.write(""",
-        {
-            "type": "png",
-            "name": """ + f'"MONTH_{i}_BOTTOM_2DIGIT"' + """,
-            "file": """ + f'"images/month/{i}Bottom_2digit.png"' + """
+            "file": """ + f'"images/month/{i}_bottom.png"' + """
         }""")
 
 
@@ -112,19 +86,19 @@ for i in weekdays:
         {
             "type": "png",
             "name": """ + f'"WEEK_{i.upper()}_TOP"' + """,
-            "file": """ + f'"images/week/{i}Top.png"' + """
+            "file": """ + f'"images/week/{i}_top.png"' + """
         }""")
     file.write(""",
         {
             "type": "png",
             "name": """ + f'"WEEK_{i.upper()}_MID"' + """,
-            "file": """ + f'"images/week/{i}.png"' + """
+            "file": """ + f'"images/week/{i}_middle.png"' + """
         }""")
     file.write(""",
         {
             "type": "png",
             "name": """ + f'"WEEK_{i.upper()}_BOTTOM"' + """,
-            "file": """ + f'"images/week/{i}Bottom.png"' + """
+            "file": """ + f'"images/week/{i}_bottom.png"' + """
         }""")
 
 
@@ -136,12 +110,6 @@ for i in weather:
             "type": "raw",
             "name": """ + f'"WEATHER_{i.upper()}"' + """,
             "file": """ + f'"images/weather/{i}.apng"' + """
-        }""")
-    file.write(""",
-        {
-            "type": "raw",
-            "name": """ + f'"WEATHER_{i.upper()}_2DIGIT"' + """,
-            "file": """ + f'"images/weather/{i}_2digit.apng"' + """
         }""")
 
 # time of day
@@ -165,7 +133,7 @@ print("Media json created successfully!")
 ## Now the resource arrays
 file = open("resources.generated.h", "w")
 
-file.write("""static const uint32_t DayResourceIDs[3][31] = {
+file.write("""static const uint8_t DayResourceIDs[3][31] = {
     {\n""")
 for i in range(1,32):
     file.write(f'\t\tRESOURCE_ID_DAY_{i}_BOTTOM,\n')
@@ -177,7 +145,7 @@ for i in range(1,32):
     file.write(f'\t\tRESOURCE_ID_DAY_{i}_TOP,\n')
 file.write("\t}\n};\n\n")
 
-file.write("""static const uint32_t MonthResourceIDs[3][12] = {
+file.write("""static const uint8_t MonthResourceIDs[3][12] = {
     {\n""")
 for i in range(1,13):
     file.write(f'\t\tRESOURCE_ID_MONTH_{i}_BOTTOM,\n')
@@ -189,19 +157,7 @@ for i in range(1,13):
     file.write(f'\t\tRESOURCE_ID_MONTH_{i}_TOP,\n')
 file.write("\t}\n};\n\n")
 
-file.write("""static const uint32_t Month2DigitResourceIDs[3][12] = {
-    {\n""")
-for i in range(1,13):
-    file.write(f'\t\tRESOURCE_ID_MONTH_{i}_BOTTOM_2DIGIT,\n')
-file.write("\t},\n\t{\n")
-for i in range(1,13):
-    file.write(f'\t\tRESOURCE_ID_MONTH_{i}_MID_2DIGIT,\n')
-file.write("\t},\n\t{\n")
-for i in range(1,13):
-    file.write(f'\t\tRESOURCE_ID_MONTH_{i}_TOP_2DIGIT,\n')
-file.write("\t}\n};\n\n")
-
-file.write("""static const uint32_t WeekdayResourceIDs[3][7] = {
+file.write("""static const uint8_t WeekdayResourceIDs[3][7] = {
     {\n""")
 for i in weekdays:
     file.write(f'\t\tRESOURCE_ID_WEEK_{i.upper()}_BOTTOM,\n')
@@ -213,17 +169,12 @@ for i in weekdays:
     file.write(f'\t\tRESOURCE_ID_WEEK_{i.upper()}_TOP,\n')
 file.write("\t}\n};\n\n")
 
-file.write('static const uint32_t WeatherResourceIDs[] = {\n')
+file.write('static const uint8_t WeatherResourceIDs[] = {\n')
 for i in weather:
     file.write(f'\tRESOURCE_ID_WEATHER_{i.upper()},\n')
 file.write("};\n\n")
 
-file.write('static const uint32_t Weather2DigitResourceIDs[] = {\n')
-for i in weather:
-    file.write(f'\tRESOURCE_ID_WEATHER_{i.upper()}_2DIGIT,\n')
-file.write("};\n\n")
-
-file.write('static const uint32_t TimeOfDayResourceIDs[] = {\n')
+file.write('static const uint8_t TimeOfDayResourceIDs[] = {\n')
 for i in time_of_day:
     file.write(f'\tRESOURCE_ID_TIME_{i.upper()},\n')
 file.write("};\n\n")

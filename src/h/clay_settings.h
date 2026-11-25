@@ -14,15 +14,12 @@ int SettingsGetConstantSunriseMinute();
 int SettingsGetConstantSunsetHour();
 int SettingsGetConstantSunsetMinute();
 
-bool SettingsUsingFahrenheit();
 bool SettingsShowToD();
 bool SettingsGetAnimationDisabled();
 
 void SettingsSetBackgroundMode(enum BackgroundMode bg);
 void SettingsSetSunriseTimes(int hour, int min);
 void SettingsSetSunsetTimes(int hour, int min);
-
-void SettingsSetFahrenheit(bool fahrenheit);
 
 void SettingsSetShowTimeOfDay(bool show);
 

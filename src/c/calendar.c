@@ -8,6 +8,9 @@
 
 /* Internal state */
 
+// time in ms
+#define WEATHER_FRAME_TIME 333
+
 // 1-indexed (1-31)
 static int curr_day = -1;
 // 0-indexed ("months since january")
@@ -16,6 +19,7 @@ static int curr_weekday = -1;
 static enum WeatherIcon curr_weather_icon = WeatherIconUnknown;
 
 static bool curr_2digit = false;
+static bool prev_2digit = false;
 
 static AppTimer* s_weather_anim_timer = NULL;
 static bool animation_enabled = false;
@@ -38,6 +42,26 @@ static BitmapLayer* s_weather_layer = NULL;
 /* Private function declarations */ 
 static void WeatherFrameAdvanceEvent(void *context) ;
 
+// Updates the size of the bitmap layer, does not touch position
+static void BitmapLayerUpdateBounds(BitmapLayer* layer, GBitmap* bitmap)
+{
+    GRect bitmap_bounds = gbitmap_get_bounds(bitmap);
+    GRect layer_frame = layer_get_frame(bitmap_layer_get_layer(layer));
+
+    layer_frame.size = bitmap_bounds.size;
+    layer_set_frame(bitmap_layer_get_layer(layer), layer_frame);
+}
+
+static void SetBitmapLayerPos(BitmapLayer* layer, GPoint pos)
+{
+    GRect frame = layer_get_frame(bitmap_layer_get_layer(layer));
+
+    frame.origin.x = pos.x;
+    frame.origin.y = pos.y;
+    
+    layer_set_frame(bitmap_layer_get_layer(layer), frame);
+}
+
 
 void CalendarInitResources()
 {
@@ -51,6 +75,10 @@ void CalendarInitResources()
         s_day_layer[i] = bitmap_layer_create(bounds);
         bitmap_layer_set_bitmap(s_day_layer[i], s_day_bitmap[i]);
         bitmap_layer_set_compositing_mode(s_day_layer[i], GCompOpSet);
+        bitmap_layer_set_alignment(s_day_layer[i], GAlignTopLeft);
+
+        // TEMP
+        //layer_set_hidden(bitmap_layer_get_layer(s_day_layer[i]), true);
     }
 
     // Month
@@ -63,6 +91,10 @@ void CalendarInitResources()
         s_month_layer[i] = bitmap_layer_create(bounds);
         bitmap_layer_set_bitmap(s_month_layer[i], s_month_bitmap[i]);
         bitmap_layer_set_compositing_mode(s_month_layer[i], GCompOpSet);
+        bitmap_layer_set_alignment(s_month_layer[i], GAlignTopLeft);
+
+        // TEMP
+        //layer_set_hidden(bitmap_layer_get_layer(s_month_layer[i]), true);
     }
 
     // Weekday
@@ -75,26 +107,32 @@ void CalendarInitResources()
         s_weekday_layer[i] = bitmap_layer_create(bounds);
         bitmap_layer_set_bitmap(s_weekday_layer[i], s_weekday_bitmap[i]);
         bitmap_layer_set_compositing_mode(s_weekday_layer[i], GCompOpSet);
+        bitmap_layer_set_alignment(s_weekday_layer[i], GAlignTopLeft);
+
+        // TEMP
+        //layer_set_hidden(bitmap_layer_get_layer(s_weekday_layer[i]), true);
     }
 
     // Current weather
     curr_weather_icon = WeatherIconUnknown;
 
-    uint32_t curr_weather_id = GetWeatherResourceID(curr_weather_icon, curr_2digit);
+    uint32_t curr_weather_id = GetWeatherResourceID(curr_weather_icon);
 
     s_weather_bitmap_sequence = gbitmap_sequence_create_with_resource(curr_weather_id);
     GSize frame_size = gbitmap_sequence_get_bitmap_size(s_weather_bitmap_sequence);
     gbitmap_sequence_set_play_count(s_weather_bitmap_sequence, PLAY_COUNT_INFINITE);
     s_weather_bitmap = gbitmap_create_blank(frame_size, GBitmapFormat8Bit);
     GRect bounds = gbitmap_get_bounds(s_weather_bitmap);
-    bounds.origin.x += CALENDAR_POS_X;
-    bounds.origin.y += CALENDAR_POS_Y;
+    bounds.origin.x += CALENDAR_POS_X + (curr_2digit ? WEATHER_2DIGIT_OFFSET_X : WEATHER_OFFSET_X);
+    bounds.origin.y += CALENDAR_POS_Y + WEATHER_OFFSET_Y;
     s_weather_layer = bitmap_layer_create(bounds);
     bitmap_layer_set_bitmap(s_weather_layer, s_weather_bitmap);
     bitmap_layer_set_compositing_mode(s_weather_layer, GCompOpSet);
+    bitmap_layer_set_alignment(s_weather_layer, GAlignTopLeft);
 
     gbitmap_sequence_restart(s_weather_bitmap_sequence);
     gbitmap_sequence_update_bitmap_next_frame(s_weather_bitmap_sequence, s_weather_bitmap, NULL);
+
 }
 
 void CalendarUnloadResources()
@@ -148,9 +186,29 @@ void CalendarUpdateDay(int day)
         uint32_t curr_day_id = GetDayResourceID(i, day - 1);
 
         GBitmap* old_bitmap = s_day_bitmap[i];
+        gbitmap_destroy(old_bitmap);
         s_day_bitmap[i] = gbitmap_create_with_resource(curr_day_id);
         bitmap_layer_set_bitmap(s_day_layer[i], s_day_bitmap[i]);
-        gbitmap_destroy(old_bitmap);
+        
+        
+        
+        GPoint day_pos = GetDayPosition(day);
+        day_pos.x += CALENDAR_POS_X;
+        day_pos.y += CALENDAR_POS_Y;
+        SetBitmapLayerPos(s_day_layer[i], day_pos);
+
+        BitmapLayerUpdateBounds(s_day_layer[i], s_day_bitmap[i]);
+        
+        // if (i == 0)
+        // {
+        //     GRect bitmap_bounds = gbitmap_get_bounds(s_day_bitmap[i]);
+        //     APP_LOG(APP_LOG_LEVEL_INFO, "Day %02i Bitmap pos:  %02i %02i", day, bitmap_bounds.origin.x, bitmap_bounds.origin.y);
+        //     APP_LOG(APP_LOG_LEVEL_INFO, "Day %02i Bitmap size: %02i %02i", day, bitmap_bounds.size.w, bitmap_bounds.size.h);
+            
+        //     GRect layer_frame = layer_get_frame(bitmap_layer_get_layer(s_day_layer[i]));
+        //     APP_LOG(APP_LOG_LEVEL_INFO, "Day %02i Layer pos:   %02i %02i", day, layer_frame.origin.x, layer_frame.origin.y);
+        //     APP_LOG(APP_LOG_LEVEL_INFO, "Day %02i Layer size:  %02i %02i\n", day, layer_frame.size.w, layer_frame.size.h);
+        // }
     }
 
     // Month and weather need to update if switching between 1-digit and 2-digit day
@@ -176,14 +234,17 @@ void CalendarUpdateDay(int day)
 
     if (day_digits_changed)
     {
+        //APP_LOG(APP_LOG_LEVEL_INFO, "Day digits changed, 2 digits = %i", curr_2digit);
         CalendarUpdateMonth(curr_mon);
         CalendarUpdateWeatherIcon(curr_weather_icon);
     }
+
+    prev_2digit = curr_2digit;
 }
 
 void CalendarUpdateMonth(int month)
 {
-    if (curr_mon == month)
+    if (curr_mon == month && curr_2digit == prev_2digit)
     {
         return;
     }
@@ -193,10 +254,19 @@ void CalendarUpdateMonth(int month)
     {
         uint32_t curr_mon_id = GetMonthResourceID(i, curr_mon, curr_2digit);
 
+        //APP_LOG(APP_LOG_LEVEL_INFO, "Month Resource ID %i", curr_mon_id);
+
         GBitmap* old_bitmap = s_month_bitmap[i];
         s_month_bitmap[i] = gbitmap_create_with_resource(curr_mon_id);
         bitmap_layer_set_bitmap(s_month_layer[i], s_month_bitmap[i]);
         gbitmap_destroy(old_bitmap);
+
+        GPoint mon_pos = GetMonthPosition(month, curr_2digit);
+        mon_pos.x += CALENDAR_POS_X;
+        mon_pos.y += CALENDAR_POS_Y;
+        SetBitmapLayerPos(s_month_layer[i], mon_pos);
+
+        BitmapLayerUpdateBounds(s_month_layer[i], s_month_bitmap[i]);
     }
 }
 
@@ -214,15 +284,23 @@ void CalendarUpdateWeekday(int weekday)
         uint32_t curr_weekday_id = GetWeekdayResourceID(i, curr_weekday);
 
         GBitmap* old_bitmap = s_weekday_bitmap[i];
+        gbitmap_destroy(old_bitmap);
         s_weekday_bitmap[i] = gbitmap_create_with_resource(curr_weekday_id);
         bitmap_layer_set_bitmap(s_weekday_layer[i], s_weekday_bitmap[i]);
-        gbitmap_destroy(old_bitmap);
+
+        GPoint weekday_pos = GetWeekPosition(curr_weekday);
+        weekday_pos.x += CALENDAR_POS_X;
+        weekday_pos.y += CALENDAR_POS_Y;
+        SetBitmapLayerPos(s_weekday_layer[i], weekday_pos);
+        BitmapLayerUpdateBounds(s_weekday_layer[i], s_weekday_bitmap[i]);
     }
 }
 
 void CalendarUpdateWeatherIcon(enum WeatherIcon icon)
 {
-    if (curr_weather_icon == icon)
+    //APP_LOG(APP_LOG_LEVEL_INFO, "old: %i new: %i", curr_weather_icon, icon);
+
+    if (curr_weather_icon == icon && curr_2digit == prev_2digit)
     {
         return;
     }
@@ -234,18 +312,28 @@ void CalendarUpdateWeatherIcon(enum WeatherIcon icon)
         app_timer_cancel(s_weather_anim_timer);
     }
 
-    uint32_t curr_weather_id = GetWeatherResourceID(curr_weather_icon, curr_2digit);
-    GBitmapSequence* old_seq = s_weather_bitmap_sequence;
+    gbitmap_sequence_destroy(s_weather_bitmap_sequence);
+    gbitmap_destroy(s_weather_bitmap);
+    
+    uint32_t curr_weather_id = GetWeatherResourceID(curr_weather_icon);
     s_weather_bitmap_sequence = gbitmap_sequence_create_with_resource(curr_weather_id);
     gbitmap_sequence_set_play_count(s_weather_bitmap_sequence, PLAY_COUNT_INFINITE);
-    gbitmap_sequence_destroy(old_seq);
     
+    GSize frame_size = gbitmap_sequence_get_bitmap_size(s_weather_bitmap_sequence);
+    s_weather_bitmap = gbitmap_create_blank(frame_size, GBitmapFormat8Bit);
+    bitmap_layer_set_bitmap(s_weather_layer, s_weather_bitmap);
+
+    GPoint weather_pos;
+    weather_pos.x = CALENDAR_POS_X + (curr_2digit ? WEATHER_2DIGIT_OFFSET_X : WEATHER_OFFSET_X);
+    weather_pos.y = CALENDAR_POS_Y + WEATHER_OFFSET_Y;    
+    SetBitmapLayerPos(s_weather_layer, weather_pos);
+
     gbitmap_sequence_restart(s_weather_bitmap_sequence);
     gbitmap_sequence_update_bitmap_next_frame(s_weather_bitmap_sequence, s_weather_bitmap, NULL);
     
     if (animation_enabled)
     {
-        s_weather_anim_timer = app_timer_register(500, WeatherFrameAdvanceEvent, NULL);
+        s_weather_anim_timer = app_timer_register(WEATHER_FRAME_TIME, WeatherFrameAdvanceEvent, NULL);
     }
 }
 
@@ -284,7 +372,7 @@ static void WeatherFrameAdvanceEvent(void *context)
         bitmap_layer_set_bitmap(s_weather_layer, s_weather_bitmap);
         layer_mark_dirty(bitmap_layer_get_layer(s_weather_layer));
 
-        // Timer for that frame's delay
-        s_weather_anim_timer = app_timer_register(500, WeatherFrameAdvanceEvent, NULL);
+        // queue up next frame
+        s_weather_anim_timer = app_timer_register(WEATHER_FRAME_TIME, WeatherFrameAdvanceEvent, NULL);
     }
 }

@@ -1,3 +1,4 @@
 build/
 .lock_waf*
 .lock-waf*
+/compile_commands.json

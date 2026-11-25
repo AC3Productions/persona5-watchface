@@ -10,8 +10,6 @@ static TextLayer* s_temp_drop_shadow_layer = NULL;
 
 // Current temperature (fahrenheit)
 static int curr_temp = 0;
-static bool display_fahrenheit = true;
-static bool unit_changed = false;
 static bool weather_connected = false;
 
 void SetWeatherConnected(bool connected)
@@ -79,62 +77,62 @@ void TemperatureSetPosition(bool show_tod)
     layer_set_frame(layer_ds_temp, temp_ds_bounds);
 }
 
-void SetTemperature(int fahrenheit)
+void SetTemperature(const char* temp)
 {
     if (!weather_connected)
     {
         return;
     }
 
-    if (!unit_changed && fahrenheit == curr_temp)
-    {
-        return;
-    }
-
-    curr_temp = fahrenheit;
+    //curr_temp = fahrenheit;
     static char temperature_buffer[8];
-    if (display_fahrenheit)
-    {
-        snprintf(temperature_buffer, sizeof(temperature_buffer), "%d°F", curr_temp);
-    }
-    else
-    {
-        int celcius = round(((float)curr_temp - 32.0f) * 5.0f / 9.0f);
-        snprintf(temperature_buffer, sizeof(temperature_buffer), "%d°C", celcius);
-    }
+    strncpy(temperature_buffer, temp, strlen(temp));
 
     text_layer_set_text(s_temp_layer, temperature_buffer);
     text_layer_set_text(s_temp_drop_shadow_layer, temperature_buffer);
 }
 
-void SetFahrenheit(bool use_f)
+int GetWeatherIcon(const char* weather_code)
 {
-    display_fahrenheit = use_f;
-    unit_changed = true;
-    SetTemperature(curr_temp);
-    unit_changed = false;
+    if (strcmp(weather_code, "sun") == 0)
+    {
+        return WeatherIconSun;
+    }
 
-}
+    if (strcmp(weather_code, "partly_cloudy") == 0)
+    {
+        return WeatherIconCloud;
+    }
 
-int GetWeatherIcon(enum WeatherCode weather_code)
-{
-    if (weather_code <= WeatherCodeClear) return WeatherIconSun;
+    if (strcmp(weather_code, "cloudy") == 0)
+    {
+        return WeatherIconCloud;
+    }
 
-    if (weather_code <= WeatherCodeCloudy) return WeatherIconCloud;
-    if (weather_code <= WeatherCodeFog) return WeatherIconCloud;
+    if (strcmp(weather_code, "light_rain") == 0)
+    {
+        return WeatherIconRain;
+    }
 
-    if (weather_code <= WeatherCodeDrizzle) return WeatherIconRain;
-    if (weather_code <= WeatherCodeFreezingDrizzle) return WeatherIconRain;
-    if (weather_code <= WeatherCodeRain) return WeatherIconRain;
-    if (weather_code <= WeatherCodeFreezingRain) return WeatherIconRain;
-    
-    if (weather_code <= WeatherCodeSnow) return WeatherIconSnow;
-    if (weather_code <= WeatherCodeSnowGrains) return WeatherIconSnow;
+    if (strcmp(weather_code, "heavy_rain") == 0)
+    {
+        return WeatherIconRain;
+    }
 
-    if (weather_code <= WeatherCodeShowers) return WeatherIconRain;
-    if (weather_code <= WeatherCodeSnowShowers) return WeatherIconSnow;
-    if (weather_code == WeatherCodeThunderstorm) return WeatherIconRain;
-    if (weather_code <= WeatherCodeThunderstorm + 4) return WeatherIconRain;
+    if (strcmp(weather_code, "light_snow") == 0)
+    {
+        return WeatherIconSnow;
+    }
+
+    if (strcmp(weather_code, "heavy_snow") == 0)
+    {
+        return WeatherIconSnow;
+    }
+
+    if (strcmp(weather_code, "rain_and_snow") == 0)
+    {
+        return WeatherIconRain;
+    }
 
     // we shouldn't ever get here
     return WeatherIconUnknown;

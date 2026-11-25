@@ -57,12 +57,6 @@ module.exports =
             },
             {
                 "type": "toggle",
-                "messageKey": "TemperatureUnit",
-                "label": "Use Fahrenheit",
-                "defaultValue": true
-            },
-            {
-                "type": "toggle",
                 "messageKey": "ShowTimeOfDay",
                 "label": "Show Time of Day",
                 "defaultValue": true,

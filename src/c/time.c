@@ -332,8 +332,7 @@ static void UpdateCurrentBG()
         bg_resource_id = RESOURCE_ID_NIGHT_BG;
     }
 
-    GBitmap* old_bitmap = s_bg_bitmap;
-    gbitmap_destroy(old_bitmap);
+    gbitmap_destroy(s_bg_bitmap);
     s_bg_bitmap = gbitmap_create_with_resource(bg_resource_id);
     bitmap_layer_set_bitmap(s_bg_layer, s_bg_bitmap);
 }

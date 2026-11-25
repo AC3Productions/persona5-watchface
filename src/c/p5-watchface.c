@@ -10,11 +10,16 @@
 
 static Window* s_main_window = NULL;
 
-// To be called when the weather icon needs to be updated
+// To do:
+// Finish 20-31 in asset cleanup, as well as months and weather
+// Update generate_media to support the new asset names (and maybe see what's wrong with it?)
+// Later:
+// Backlight animation setting
+
 
 static void update_time()
 {
-    // Get a tm structure
+    // Current time data
     time_t temp = time(NULL);
     struct tm *tick_time = localtime(&temp);
 
@@ -22,6 +27,19 @@ static void update_time()
     CalendarUpdateDay(tick_time->tm_mday);
     CalendarUpdateMonth(tick_time->tm_mon);
     CalendarUpdateWeekday(tick_time->tm_wday);
+
+        // static int test_weekday = 0;
+    // SetTime(21, 28);
+    // CalendarUpdateDay(18);
+    // CalendarUpdateMonth(10);
+    // CalendarUpdateWeekday(test_weekday);
+    // CalendarUpdateWeatherIcon(WeatherIconUnknown);
+    
+    // ++test_weekday;
+    // if (test_weekday > 6)
+    // {
+    //     test_weekday = 0;
+    // }
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed)
@@ -71,8 +89,6 @@ static void UpdateFromSettings()
         dict_write_uint8(iter, MESSAGE_KEY_REQUEST_SUNTIMES, 1);
         app_message_outbox_send();
     }
-
-    SetFahrenheit(SettingsUsingFahrenheit());
     
     CalendarSetAnimationDisabled(SettingsGetAnimationDisabled());
 }
@@ -115,9 +131,9 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
     {
         SetWeatherConnected(true);
 
-        SetTemperature((int)temp_tuple->value->int32);
+        SetTemperature(temp_tuple->value->cstring);
 
-        enum WeatherIcon new_icon = GetWeatherIcon((int)conditions_tuple->value->int32);
+        enum WeatherIcon new_icon = GetWeatherIcon(conditions_tuple->value->cstring);
         CalendarUpdateWeatherIcon(new_icon);
     }
 
@@ -167,13 +183,6 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
             bg_settings_changed = true;
         }
     }
-    
-
-    Tuple *temp_unit_t = dict_find(iterator, MESSAGE_KEY_TemperatureUnit);
-    if (temp_unit_t) 
-    {
-        SettingsSetFahrenheit(temp_unit_t->value->int32 == 1);
-    }
 
     Tuple *show_tod_t = dict_find(iterator, MESSAGE_KEY_ShowTimeOfDay);
     if (show_tod_t) 
@@ -188,21 +197,12 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
     }
 
     // Save and apply if any settings were changed
-    if (background_t || temp_unit_t || show_tod_t || disable_anim_t || bg_settings_changed) 
+    if (background_t || show_tod_t || disable_anim_t || bg_settings_changed) 
     {
         APP_LOG(APP_LOG_LEVEL_INFO, "settings updated");
 
         prv_save_settings();
         UpdateFromSettings();
-        
-        // Refetch weather if the temperature unit changed so the display updates
-        if (temp_unit_t) 
-        {
-            DictionaryIterator *iter;
-            app_message_outbox_begin(&iter);
-            dict_write_uint8(iter, MESSAGE_KEY_REQUEST_WEATHER, 1);
-            app_message_outbox_send();
-        }
 
         if (background_t && SettingsGetBackgroundMode() == BGSunriseSunset)
         {

@@ -3,15 +3,7 @@ var clayConfig = require('./config');
 var clay = new Clay(clayConfig);
 
 var SunCalc = require('suncalc');
-
-var xhrRequest = function (url, type, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function () {
-    callback(this.responseText);
-  };
-  xhr.open(type, url);
-  xhr.send();
-};
+var latestWeather = null;
 
 function sunTimesCallback(pos) {
   const sun_times = SunCalc.getTimes(new Date(), pos.coords.latitude, pos.coords.longitude);
@@ -34,45 +26,63 @@ function sunTimesCallback(pos) {
   );
 }
 
-function weatherCallback(pos) {
-  var url = 'https://api.open-meteo.com/v1/forecast?' +
-      'latitude=' + pos.coords.latitude +
-      '&longitude=' + pos.coords.longitude +
-      '&temperature_unit=fahrenheit' +
-      '&current=temperature_2m,weather_code';
-  
-  xhrRequest(url, 'GET',
-    function(responseText) {
-      var json = JSON.parse(responseText);
-
-      var temperature = Math.round(json.current.temperature_2m);
-      var conditions = json.current.weather_code;
-
-      var dictionary = {
-        'TEMPERATURE': temperature,
-        'CONDITIONS': conditions,
-      };
-
-      Pebble.sendAppMessage(dictionary,
-        function(e) { console.log('Weather info sent!'); },
-        function(e) { console.log('Error sending weather info!'); }
-      );
+function sendWeather() {
+  if (!latestWeather) {
+    return;
+  }
+  Pebble.sendAppMessage(latestWeather,
+    function(e) {
+      console.log('Weather info sent to Pebble successfully!');
+    },
+    function(e) {
+      console.log('Error sending weather info to Pebble!');
     }
   );
+}
 
-  
+function toCelsius(reading) {
+  if (reading.unit === '°F') {
+    return (reading.value - 32) * 5 / 9;
+  }
+  return reading.value;
+}
+
+// Subscribe to the weather from the Pebble app's weather plugin
+function subscribeToWeather() {
+  Pebble.subscribeToSource({
+    category: 'weather',
+    item: 'location',
+    properties: ['temperature', 'condition_code'],
+    onData: function(update) {
+      // The user's first weather location
+      var here = update.instances[0];
+      if (!here) {
+        return;
+      }
+
+      // Any property can be missing, so check before using it
+      var temperature = here.properties.temperature;
+      var condition = here.properties.condition_code;
+      if (!temperature || !temperature.shortText ||
+          !condition || !condition.longText) {
+        console.log('Missing something!')
+        return;
+      }
+
+      latestWeather = {
+        'TEMPERATURE': temperature.shortText.text,
+        'CONDITIONS': condition.longText.text
+      };
+      sendWeather();
+    },
+    onError: function(err) {
+      console.log('Weather unavailable: ' + err.code + ' ' + err.message);
+    }
+  });
 }
 
 function locationError(err) {
   console.log('Error requesting location!');
-}
-
-function getWeather() {
-  navigator.geolocation.getCurrentPosition(
-    weatherCallback,
-    locationError,
-    { timeout: 15000, maximumAge: 60000 }
-  );
 }
 
 function getSunTimes(err) {
@@ -86,7 +96,7 @@ function getSunTimes(err) {
 Pebble.addEventListener('ready',
   function(e) {
     console.log('PebbleKit JS ready!');
-    getWeather();
+    subscribeToWeather();
     getSunTimes();
   }
 );
@@ -95,7 +105,7 @@ Pebble.addEventListener('appmessage',
   function(e) {
     console.log('AppMessage received!');
     if (e.payload['REQUEST_WEATHER']) {
-      getWeather();
+      sendWeather();
     }
     if (e.payload['REQUEST_SUNTIMES']) {
       getSunTimes();

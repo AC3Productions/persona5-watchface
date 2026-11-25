@@ -12,9 +12,11 @@ typedef struct ClaySettings
     int sunset_h;
     int sunset_m;
 
-    bool use_fahrenheit; // false = Celsius, true = Fahrenheit
+    bool use_fahrenheit; // deprecated
+
     bool show_tod;
-    bool disable_anim;
+
+    bool disable_anim; // todo: replace with enum for anim mode
 } ClaySettings;
 
 static ClaySettings settings;
@@ -67,11 +69,6 @@ int SettingsGetConstantSunsetHour()
 int SettingsGetConstantSunsetMinute()
 {
     return settings.sunset_m;
-}
-
-bool SettingsUsingFahrenheit()
-{
-    return settings.use_fahrenheit;
 }
 
 bool SettingsShowToD()

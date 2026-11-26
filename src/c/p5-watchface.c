@@ -174,15 +174,15 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
         SettingsSetShowTimeOfDay(show_tod_t->value->int32 == 1);
     }
 
-    Tuple *disable_anim_t = dict_find(iterator, MESSAGE_KEY_AnimationMode);
-    if (disable_anim_t) 
+    Tuple *anim_mode_t = dict_find(iterator, MESSAGE_KEY_AnimationMode);
+    if (anim_mode_t) 
     {
-        enum AnimationMode new_anim_mode = CalendarGetAnimationMode(disable_anim_t->value->cstring);
+        enum AnimationMode new_anim_mode = CalendarGetAnimationMode(anim_mode_t->value->cstring);
         SettingsSetAnimationMode(new_anim_mode);
     }
 
     // Save and apply if any settings were changed
-    if (background_t || show_tod_t || disable_anim_t || bg_settings_changed) 
+    if (background_t || show_tod_t || anim_mode_t || bg_settings_changed) 
     {
         APP_LOG(APP_LOG_LEVEL_INFO, "settings updated");
 

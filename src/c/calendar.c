@@ -376,6 +376,11 @@ static void OnBacklightChange(bool on)
 
 void CalendarSetAnimationMode(enum AnimationMode mode)
 {
+    if (animation_mode == mode)
+    {
+        return;
+    }
+
     animation_mode = mode;
 
     if (animation_mode == AnimAlways)
@@ -402,7 +407,12 @@ void CalendarSetAnimationMode(enum AnimationMode mode)
     }
     else if (animation_mode == AnimBacklight)
     {
+        app_timer_cancel(s_weather_anim_timer);
+        
         backlight_service_subscribe(OnBacklightChange);
+
+        APP_LOG(APP_LOG_LEVEL_INFO, "Backlight %i", light_is_on());
+        OnBacklightChange(light_is_on());
     }
 }
 

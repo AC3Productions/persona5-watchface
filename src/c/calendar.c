@@ -371,6 +371,10 @@ static void OnBacklightChange(bool on)
     {
         animation_enabled = false;
         app_timer_cancel(s_weather_anim_timer);
+
+        gbitmap_sequence_restart(s_weather_bitmap_sequence);
+        gbitmap_sequence_update_bitmap_next_frame(s_weather_bitmap_sequence, s_weather_bitmap, NULL);
+        bitmap_layer_set_bitmap(s_weather_layer, s_weather_bitmap);
     }
 }
 
